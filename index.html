@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathias — Designer & Builder</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #f7f7f5;
+            --card: #ffffff;
+            --border: #e0e0db;
+            --text: #111111;
+            --muted: #888888;
+            --grid-line: rgba(0, 0, 0, 0.035);
+            --accent: #111111;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0e0e0e;
+                --card: #1a1a1a;
+                --border: #2a2a2a;
+                --text: #f0f0f0;
+                --muted: #666666;
+                --grid-line: rgba(255, 255, 255, 0.04);
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── LAYOUT ── */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+
+        /* ── NAV ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 0 0;
+            margin-bottom: 80px;
+        }
+
+        .nav-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 64px;
+            align-items: center;
+            margin-bottom: 100px;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-photo-wrap {
+                order: -1;
+            }
+        }
+
+        .hero-eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .hero-title em {
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .hero-body {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.75;
+            max-width: 460px;
+            margin-bottom: 40px;
+        }
+
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+
+        .chip {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 13px 28px;
+            border-radius: 100px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.22s;
+            display: inline-block;
+        }
+
+        .btn-dark {
+            background: var(--text);
+            color: var(--bg);
+            border: 1.5px solid var(--text);
+        }
+
+        .btn-dark:hover {
+            opacity: 0.82;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text);
+        }
+
+        /* Photo */
+        .hero-photo-wrap {
+            position: relative;
+        }
+
+        .hero-photo-frame {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .hero-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+
+        .photo-badge {
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 10px 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .photo-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            flex-shrink: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.4
+            }
+        }
+
+        .photo-badge-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* ── STATS STRIP ── */
+        .stats-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 48px;
+            margin-bottom: 100px;
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 0 40px;
+        }
+
+        .stat-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 48px;
+            background: var(--border);
+        }
+
+        @media (max-width: 600px) {
+            .stat {
+                padding: 16px 24px;
+            }
+
+            .stat-divider {
+                display: none;
+            }
+        }
+
+        /* ── SECTION HEADER ── */
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            color: var(--text);
+        }
+
+        /* ── WORKS GRID ── */
+        .works-section {
+            margin-bottom: 100px;
+            animation: fadeUp 0.6s 0.15s ease both;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .works-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .work-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.09);
+            border-color: #bbb;
+        }
+
+        .work-card--featured {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 900px) {
+            .work-card--featured {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .work-card--featured {
+                grid-column: span 1;
+            }
+        }
+
+        .work-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+            background: #f0f0ec;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .work-thumb-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #bbb;
+            background: #f4f4f2;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .work-thumb-placeholder {
+                background: #1e1e1e;
+                color: #333;
+            }
+        }
+
+        .work-body {
+            padding: 24px 24px 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .work-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 3px 10px;
+            border-radius: 100px;
+        }
+
+        .work-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            margin-bottom: 8px;
+        }
+
+        .work-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+            font-weight: 300;
+            flex: 1;
+        }
+
+        .work-footer {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .work-arrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .work-arrow svg {
+            transition: transform 0.2s;
+        }
+
+        .work-card:hover .work-arrow svg {
+            transform: translateX(4px);
+        }
+
+        /* ── ABOUT STRIP ── */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 100px;
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
+
+        @media (max-width: 700px) {
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 32px;
+        }
+
+        .about-card--dark {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        .about-card--dark .about-label {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .about-card--dark p {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .about-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .about-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .about-card p {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            font-weight: 300;
+            color: var(--muted);
+        }
+
+        /* Photo 2 card */
+        .about-photo-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .about-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            min-height: 320px;
+        }
+
+        .about-photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+            padding: 32px 28px 28px;
+        }
+
+        .about-photo-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 6px;
+        }
+
+        .about-photo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* ── SKILLS ── */
+        .skills-section {
+            margin-bottom: 100px;
+            animation: fadeUp 0.6s 0.25s ease both;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 800px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 420px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+        }
+
+        .skill-icon {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+
+        .skill-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .skill-desc {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* ── CTA ── */
+        .cta-strip {
+            background: var(--text);
+            border-radius: 20px;
+            padding: 52px 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            animation: fadeUp 0.6s 0.3s ease both;
+        }
+
+        @media (max-width: 600px) {
+            .cta-strip {
+                padding: 36px 28px;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .cta-left {}
+
+        .cta-eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 10px;
+        }
+
+        .cta-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 14px 32px;
+            border-radius: 100px;
+            cursor: pointer;
+            text-decoration: none;
+            background: #fff;
+            color: #111;
+            border: none;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            background: #e8e8e8;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 60px;
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        footer p {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--text);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- NAV -->
+        <nav>
+            <a class="nav-logo" href="#">MATHIAS.</a>
+            <div class="nav-links">
+                <a href="#works">Works</a>
+                <a href="#about">About</a>
+                <a href="mailto:hello@mexuri.com.ng">Contact</a>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-left">
+                <div class="hero-eyebrow">Product Designer & Builder · Port Harcourt, NG</div>
+                <h1 class="hero-title">Building tools<br>people <em>actually</em><br>want to use.</h1>
+                <p class="hero-body">I design and build product experiences — from cap table modellers and invoice tools
+                    to AI platforms. Currently co-founding <strong>Mexuri</strong>, an AI platform for solopreneurs
+                    launching July 2026.</p>
+                <div class="hero-chips">
+                    <span class="chip">Product Design</span>
+                    <span class="chip">Frontend Dev</span>
+                    <span class="chip">AI Platforms</span>
+                    <span class="chip">Strategy</span>
+                </div>
+                <div class="hero-cta-row">
+                    <a href="#works" class="btn btn-dark">View My Work →</a>
+                    <a href="mailto:hello@mexuri.com.ng" class="btn btn-outline">Get in Touch</a>
+                </div>
+            </div>
+            <div class="hero-photo-wrap">
+                <div class="hero-photo-frame">
+                    <img src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1773730008/pic1_iclpu8.jpg"
+                        alt="Mathias — Product Designer & Builder" />
+                </div>
+                <div class="photo-badge">
+                    <span class="photo-badge-dot"></span>
+                    <span class="photo-badge-text">Open to projects</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <div class="stats-strip">
+            <div class="stat">
+                <div class="stat-num">5+</div>
+                <div class="stat-label">Products Shipped</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat-num">2</div>
+                <div class="stat-label">Companies Founded</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat-num">1</div>
+                <div class="stat-label">Platform Launching</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat-num">∞</div>
+                <div class="stat-label">Ideas in the pipeline</div>
+            </div>
+        </div>
+
+        <!-- WORKS -->
+        <section id="works" class="works-section">
+            <div class="section-header">
+                <div class="section-eyebrow">Selected Work</div>
+                <div class="section-title">Things I've shipped</div>
+            </div>
+
+            <div class="works-grid">
+
+                <!-- 1. Equitable — featured -->
+                <a class="work-card work-card--featured" href="https://mathias-gogo.github.io/equitable/"
+                    target="_blank" rel="noopener">
+                    <div class="work-thumb">
+                        <img src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1773730213/Screen_Shot_2026-03-17_at_7.50.01_AM_taepi2.png"
+                            alt="Equitable preview" />
+                    </div>
+                    <div class="work-body">
+                        <div class="work-tags">
+                            <span class="work-tag">Finance</span>
+                            <span class="work-tag">Startup Tool</span>
+                            <span class="work-tag">Interactive</span>
+                        </div>
+                        <div class="work-title">Equitable — Cap Table & Dilution Modeler</div>
+                        <div class="work-desc">A full-featured equity modelling tool for founders. Configure funding
+                            rounds, ESOP pools, convertible notes, and exit scenarios to visualise dilution across every
+                            stage of your company's life.</div>
+                        <div class="work-footer">
+                            <span class="work-arrow">Visit Project <svg width="14" height="14" viewBox="0 0 14 14"
+                                    fill="none">
+                                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg></span>
+                            <span style="font-size:0.75rem;color:var(--muted)">mathias-gogo.github.io</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 2. Paprd Proposal -->
+                <a class="work-card" href="https://mathias-gogo.github.io/paprd-proposal/" target="_blank"
+                    rel="noopener">
+                    <div class="work-thumb">
+                        <img src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1773730243/Screen_Shot_2026-03-17_at_7.50.34_AM_ril3vc.png"
+                            alt="Paprd Proposal preview" />
+                    </div>
+                    <div class="work-body">
+                        <div class="work-tags">
+                            <span class="work-tag">SaaS UI</span>
+                            <span class="work-tag">Proposals</span>
+                        </div>
+                        <div class="work-title">Paprd — Proposal Builder</div>
+                        <div class="work-desc">A clean, conversion-optimised proposal builder interface for freelancers
+                            and agencies. Structured to close deals faster.</div>
+                        <div class="work-footer">
+                            <span class="work-arrow">Visit Project <svg width="14" height="14" viewBox="0 0 14 14"
+                                    fill="none">
+                                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 3. Babylon Calculator -->
+                <a class="work-card" href="https://mathias-gogo.github.io/babylon/" target="_blank" rel="noopener">
+                    <div class="work-thumb">
+                        <img src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1773730263/Screen_Shot_2026-03-17_at_7.50.54_AM_isvmqn.png"
+                            alt="Babylon Calculator preview" />
+                    </div>
+                    <div class="work-body">
+                        <div class="work-tags">
+                            <span class="work-tag">Finance</span>
+                            <span class="work-tag">Calculator</span>
+                        </div>
+                        <div class="work-title">The Babylon Calculator</div>
+                        <div class="work-desc">An elegant financial calculator inspired by the timeless principles of
+                            wealth building — compound interest, savings ratios, and investment projections made simple.
+                        </div>
+                        <div class="work-footer">
+                            <span class="work-arrow">Visit Project <svg width="14" height="14" viewBox="0 0 14 14"
+                                    fill="none">
+                                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 4. Paprd Invoice -->
+                <a class="work-card" href="https://mathias-gogo.github.io/paprd/" target="_blank" rel="noopener">
+                    <div class="work-thumb">
+                        <img src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1773730281/Screen_Shot_2026-03-17_at_7.51.14_AM_vlblkc.png"
+                            alt="Paprd Invoice preview" />
+                    </div>
+                    <div class="work-body">
+                        <div class="work-tags">
+                            <span class="work-tag">SaaS UI</span>
+                            <span class="work-tag">Invoicing</span>
+                        </div>
+                        <div class="work-title">Paprd — Invoice Tool</div>
+                        <div class="work-desc">A polished invoicing interface that lets freelancers generate, customise,
+                            and send professional invoices with zero friction.</div>
+                        <div class="work-footer">
+                            <span class="work-arrow">Visit Project <svg width="14" height="14" viewBox="0 0 14 14"
+                                    fill="none">
+                                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 5. Nigerian Startup Cost Calculator -->
+                <a class="work-card" href="https://mathias-gogo.github.io/nigerian-startup-calculator/" target="_blank"
+                    rel="noopener">
+                    <div class="work-thumb">
+                        <img src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1773730204/Screen_Shot_2026-03-17_at_7.49.42_AM_i6kzg5.png"
+                            alt="Nigerian Startup Calculator preview" />
+                    </div>
+                    <div class="work-body">
+                        <div class="work-tags">
+                            <span class="work-tag">Nigeria</span>
+                            <span class="work-tag">Startup</span>
+                            <span class="work-tag">Calculator</span>
+                        </div>
+                        <div class="work-title">Nigerian Startup Cost Calculator</div>
+                        <div class="work-desc">A practical tool that helps Nigerian founders estimate their true startup
+                            costs — from CAC registration to first-year operational spend, in Naira.</div>
+                        <div class="work-footer">
+                            <span class="work-arrow">Visit Project <svg width="14" height="14" viewBox="0 0 14 14"
+                                    fill="none">
+                                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg></span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="about-section">
+            <div class="about-photo-card">
+                <img src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1773730008/pic2_c7chi3.jpg"
+                    alt="Mathias speaking" />
+                <div class="about-photo-overlay">
+                    <div class="about-photo-label">In the field</div>
+                    <div class="about-photo-title">Building in public</div>
+                </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:24px;">
+                <div class="about-card about-card--dark">
+                    <div class="about-label">About Me</div>
+                    <h3>Co-founder. Designer.<br>Builder from Port Harcourt.</h3>
+                    <p>I sit at the intersection of product design and technology strategy. I build tools that solve
+                        real problems for founders and solopreneurs — with a strong bias for shipping fast and iterating
+                        on what works.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-label">Currently</div>
+                    <h3>Co-founding Mexuri</h3>
+                    <p>Mexuri is an AI platform giving solopreneurs a suite of specialised AI agents for content,
+                        marketing, research, web dev, and strategy. Launching <strong>25 July 2026.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="skills-section">
+            <div class="section-header">
+                <div class="section-eyebrow">Capabilities</div>
+                <div class="section-title">What I bring to the table</div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <div class="skill-name">Product Design</div>
+                    <div class="skill-desc">UI/UX, design systems, interaction design, and user research.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <div class="skill-name">Frontend Dev</div>
+                    <div class="skill-desc">HTML, CSS, JavaScript — shipping polished, production-grade interfaces.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🧭</div>
+                    <div class="skill-name">Product Strategy</div>
+                    <div class="skill-desc">From idea to GTM — scoping, prioritisation, and product-market fit thinking.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <div class="skill-name">AI Product Building</div>
+                    <div class="skill-desc">Designing interfaces and experiences around AI agents and LLM-powered
+                        workflows.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-strip">
+            <div class="cta-left">
+                <div class="cta-eyebrow">Let's build together</div>
+                <div class="cta-title">Got a product idea?<br>Let's make it real.</div>
+            </div>
+            <a href="mailto:hello@mexuri.com.ng" class="cta-btn">Send a Message →</a>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>© 2026 Mathias · Port Harcourt, Nigeria</p>
+            <p><a href="https://mexuri.com.ng" target="_blank" rel="noopener">mexuri.com.ng →</a></p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
