@@ -597,6 +597,7 @@
             border: 1px solid var(--border);
             border-radius: 20px;
             overflow: hidden;
+            max-height: 600px;
             position: relative;
         }
 
@@ -712,15 +713,13 @@
             }
         }
 
-        .cta-left {}
-
         .cta-eyebrow {
             font-family: 'Montserrat', sans-serif;
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.45);
+            color: var(--border);
             margin-bottom: 10px;
         }
 
@@ -728,9 +727,11 @@
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             font-weight: 900;
-            color: #fff;
+            color: var(--border);
             letter-spacing: -0.02em;
         }
+
+
 
         .cta-btn {
             font-family: 'Montserrat', sans-serif;
@@ -1010,7 +1011,7 @@
                     <div class="about-photo-title">Building in public</div>
                 </div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:24px;">
+            <div style="display:flex; flex-direction:column; gap:24px;">
                 <div class="about-card about-card--dark">
                     <div class="about-label">About Me</div>
                     <h3>Co-founder. Designer.<br>Builder from Port Harcourt.</h3>
